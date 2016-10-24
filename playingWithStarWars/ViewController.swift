@@ -12,13 +12,58 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+        var urlString = "http://swapi.co/api/people/1"
+        
+        var url = URL(string: urlString)
+        
+        if let unwrappedUrl = url{
+            var session = URLSession.shared
+           
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            var dataTask = session.dataTask(with: unwrappedUrl, completionHandler: { (data, response, error) in
+                
+                print(response)
+                print(error)
+                if let unwrappedData = data{
+                    
+                    do{
+                        // success
+                        var responseJSON = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as! [String:Any]
+                        
+                        var name = responseJSON["name"] as! String
+                        
+                        print(name)
+                        
+                        
+                    }catch{
+                       print("hey this is not working")
+                        
+                    }
+                   
+                }
+                
+                
+            })
+            
+            
+             dataTask.resume()
+            
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
     }
+       
+    
+
 
 
 }
