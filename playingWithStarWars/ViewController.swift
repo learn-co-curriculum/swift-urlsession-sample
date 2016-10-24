@@ -12,15 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var urlString = "http://swapi.co/api/people/1"
+        let urlString = "http://swapi.co/api/people/1"
         
-        var url = URL(string: urlString)
+        let url = URL(string: urlString)
         
         if let unwrappedUrl = url{
-            var session = URLSession.shared
+            let session = URLSession.shared
            
 
-            var dataTask = session.dataTask(with: unwrappedUrl, completionHandler: { (data, response, error) in
+            let dataTask = session.dataTask(with: unwrappedUrl, completionHandler: { (data, response, error) in
                 
                 print(response)
                 print(error)
@@ -28,9 +28,9 @@ class ViewController: UIViewController {
                     
                     do{
                         // success
-                        var responseJSON = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as! [String:Any]
+                        let responseJSON = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as! [String:Any]
                         
-                        var name = responseJSON["name"] as! String
+                        let name = responseJSON["name"] as! String
                         
                         print(name)
                         
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         
         
     }
-       
+    
     
 
 
